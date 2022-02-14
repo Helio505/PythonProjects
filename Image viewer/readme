@@ -1,1 +1,7 @@
 This is for my image viewer project.
+
+What the app needs to have:
+- open an image with a interface, like the paint interface where you click on the file to open. OK
+- you have to be able to rotate the image. OK
+- option to show on your current image viewer
+- save the rotated image
