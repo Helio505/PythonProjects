@@ -1,5 +1,0 @@
-All of the sources are for Python
-
-tkinter/python
-[Python GUI's with TKinter - Codemy](https://www.gog.com/)
-This course is amazing, you learn a lot about tkinter and also python, by using it on tkinter.
