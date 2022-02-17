@@ -6,3 +6,4 @@ App to calculate area
 - in tkinter
 - has to have a loading bar, for something(that can be disabled)
 - has to be more precise than floating point numbers
+- create a button that only works if the user gives all the needed values
