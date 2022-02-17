@@ -8,4 +8,4 @@ Things to know:
 - I'm from Brazil.
 - I'm doing all of these projects with pyCharm and in Windows 10.
 - I'm in the process of understanding github, so strange things may happen.
-- I'm creating a list of good websites/documents/YouTube channels to learn things about coding.
+- I'm creating a list of good websites/documents/YouTube channels to learn things about coding. (it is called [SOURCES OF INFORMATION](https://github.com/HelioHBR/PythonProjects/blob/main/SOURCES%20OF%20INFORMATION))
