@@ -6,6 +6,6 @@ I'm learning Python and when I accomplish my goals with a certain project I put 
 Things to know:
 - my comments are in English.
 - I'm from Brazil.
-- I'm doing all of these projects with pyCharm and in Windows 10.
+- I'm doing all of these projects on Windows 10.
 - I'm in the process of understanding github, so strange things may happen.
 - I'm creating a list of good websites/documents/YouTube channels to learn things about coding. (it is called [SOURCES OF INFORMATION](https://github.com/HelioHBR/PythonProjects/blob/main/SOURCES%20OF%20INFORMATION.md))
