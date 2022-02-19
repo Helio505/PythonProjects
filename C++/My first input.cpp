@@ -14,6 +14,7 @@ int main()
     cin >> number;
 
     // so here it is sort of doing print("You entered ", number)
-    cout << "You entered " << number;;    
+    cout << "You entered " << number;
+    //also no idea what this does
     return 0;
 }
