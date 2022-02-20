@@ -1,4 +1,8 @@
-
+Instructions on how to make my code work:
+- You should probably download the whole folder, so the assets work.
+- The libraries are always at the start of the code.
+- You need all libraries for the code to work.
+- Keep an eye for paths in my code, if needed change to suit your needs.
 
 
 
