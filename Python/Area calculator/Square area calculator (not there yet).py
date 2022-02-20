@@ -82,16 +82,3 @@ button2 = tkinter.Button(root, bg="#ededed", borderwidth=3, relief="raised", pad
 button2.place(x=35, y=200)
 
 root.mainloop()
-
-
-
-
-
-
-
-
-
-# things that have to change:
-# just integers work here. OK
-# I want an image of the shape. OK
-# need labels directing to the entry boxes
