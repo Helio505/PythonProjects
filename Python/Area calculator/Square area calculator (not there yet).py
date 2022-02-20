@@ -53,10 +53,7 @@ label = tkinter.Label(root, width=22, borderwidth=5, relief="groove", font=("Ari
 label.place(x=20, y=20)
 
 # block of code responsible for instantiating the image:
-# main_file is the file where all the components here are
-# you have to use r"filepath", filepath being for example C:\Dowloads
-main_file = remove this and put the path
-imageOpened = Image.open(mainfile)
+imageOpened = Image.open("square.png")
 global tkimage
 tkimage_square = ImageTk.PhotoImage(imageOpened)
 square = tkinter.Label(root, image=tkimage_square)
