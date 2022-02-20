@@ -1,3 +1,7 @@
+
+
+
+
 App to calculate area
 - will calculate area of the main shapes
 - you give the value of the sides and it calculates the area
