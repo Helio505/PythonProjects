@@ -8,3 +8,4 @@ everything. Comments are really important to learn, you should code as if you ha
 show to someone later, in this way you explain important things to yourself.
 - One little wrong piece of code will make the code break, so when copying type the code carefully.
 - You should probably be using an IDE.
+- (no cm) means no comments, so the code that has this has much less comments.
