@@ -1,6 +1,10 @@
 import math
+import sys
 
 operation_choice = str(input("Radians to Degrees, or Degrees to Radians? rd/dr: "))
+if operation_choice != ("rd" or "dr"):
+    print("Invalid choice")
+    sys.exit()
 
 if operation_choice == "rd":
     radian_value = float(input("Put the radian value here: "))
