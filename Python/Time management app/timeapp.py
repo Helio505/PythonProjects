@@ -1,5 +1,4 @@
-# Time management app
-# Take time of now, store it, take time of t2, compare, give name to task done
+# Time tracking/management app
 
 import time
 import datetime
@@ -7,10 +6,14 @@ from tkinter import *
 from tkinter import END
 from datetime import datetime
 from tkinter import ttk
+from decimal import Decimal
 
-
+# Dark mode choice window:
 def dark_mode_toggle():
+    """Returns the value of dark_mode,
+     so that it is applied according to the choice"""
     root_toggle = Tk()
+    root_toggle.geometry("150x150")
 
     def light():
         global dark_mode
@@ -22,22 +25,15 @@ def dark_mode_toggle():
         dark_mode = True
         root_toggle.destroy()
 
-    button = Button(root_toggle, text="Light mode", padx="20", pady="20", command=light)
-    button.grid(row=0, column=0)
+    button = Button(root_toggle, text="Light mode", padx="18.7", pady="20", command=light)
+    button.place(x=20, y=10)
 
-    button = Button(root_toggle, text="Dark mode", padx="20", pady="20", command=dark)
-    button.grid(row=0, column=1)
+    button2 = Button(root_toggle, text="Dark mode", padx="20", pady="20", command=dark)
+    button2.place(x=20, y=80)
 
     root_toggle.mainloop()
 dark_mode_toggle()
 
-
-# darkmode:
-# r_w_c = root_window_color
-# e_b_c = entry_box_color
-# e_b_2_c = entry_box_time_passed_color
-# b_c = buttons_color
-# f_c = font color
 if dark_mode == True:
     r_w_c = "#4d4d4d"
     e_b_c = "#c7c7c7"
@@ -53,28 +49,31 @@ else:
     f_c = "black"
     f_c_2 = "black"
 
+
 time_now = 0
 def current_time():
+    """When it is called, it returns the current time in seconds. It is isolated
+    to remove interference from local tkinter stuff."""
     global time_now
     time_now = time.time()
     return time_now
 
 
-
+# Main window:
 root = Tk()
 
-
 root.title("Time management app v2")
-# root.geometry("300x320")
-root.resizable(width=1, height=0)  #I don't want it to be resizable
+root.geometry("500x350")
+# root.resizable(width=1, height=0)
 root.configure(bg=r_w_c)
 
+# Entry to receive the name, and display the time:
+entry_box = Entry(root, width=45, bg=e_b_c, fg=f_c_2)
+entry_box.place(x=175, y=20)
 
-entry_box = Entry(root, width=40, bg=e_b_c, fg=f_c_2)
-entry_box.grid(row=0, column=0, columnspan=4, padx=8, pady=15)
-
-entry_box_time_passed = Entry(root, width=8, bg=e_b_2_c, fg=f_c_2, relief=RIDGE, borderwidth="1")
-entry_box_time_passed.grid(row=2, column=1, padx=15, pady=15)
+# Entry to display current time passed:
+entry_box_time_passed = Entry(root, width=10, bg=e_b_2_c, fg=f_c_2, relief=RIDGE, borderwidth="1")
+entry_box_time_passed.place(x=280, y=240)
 
 start_time = 0
 finish_time = 0
@@ -82,6 +81,8 @@ finish_time = 0
 
 # These functions are for the stopwatch
 def get_name():
+    """This func gets the name of the task,
+     if the task doesn't have a name stuff breaks."""
     global task_name
     t = entry_box.get()
     task_name = t
@@ -90,6 +91,7 @@ def get_name():
 
 
 def stopwatch_start():
+    """Starts the stopwatch"""
     global state
     state = True
 
@@ -102,6 +104,8 @@ def stopwatch_start():
 
 
 def stopwatch_finish_calculate():
+    """Stops the stopwatch and calculates t1-t0. Also converts everything to
+    a format tkinter understands."""
     # state = False
     entry_box.delete(0, END)
 
@@ -109,10 +113,10 @@ def stopwatch_finish_calculate():
     finish_time = time.time()
 
     calc = finish_time - start_time
-    round_calc_sec = round(calc, 2) #This controls the rounding
-    # display_time = ("Tempo decorrido: " + str(round_calc_sec) + " s")
+    round_calc_sec = round(calc, 2) 
 
-    # round_calc_sec = round_calc_sec + 26000
+    # These if statements and while loops are for the conversion from seconds, to
+    # minutes, hours, etc.
 
     # For seconds:
     if round_calc_sec < 60:
@@ -135,35 +139,43 @@ def stopwatch_finish_calculate():
         round_calc_sec -= 60
         display_time = f"Tempo decorrido: [{str(hour)} h / {str(min)} min / {str(round_calc_b)} s]"
     
-    # display_time = ("Tempo decorrido: ", str(min), " min", str(round_calc_b)" s")
-
     entry_box.insert(0, display_time)
 
-    date = datetime.now()
-    str_date = str(date)
+    # These lines of code are inserting the values into the .txt file:
+    creation_date = datetime.now()
+    creation_str_date = str(creation_date)
     with open("tasks saved file.txt", "a") as file:
-        file.write(str(task_name) + "\n")
-        file.write(str_date + "\n")
-        file.write(display_time + "\n"*2)
+        file.write(str(task_name) + "\n")     # Task name
+        file.write(creation_str_date + "\n")  # When task was created 
+        file.write(display_time + "\n"*2)     # Time spent doing the task
 
+    # Simple feedback:
     entry_box.insert(0, "~~ended~~")
-
     entry_box.update()
     time.sleep(1)
     entry_box.delete(0, 9)
 
+
+# Just deletes stuff so that you can add another task:
 def clear():
     entry_box.delete(0, END)
 
+def testing():
+    print("here here here here")
 
 def update():
+    """Shows the current time passed since the start of the stopwatch.
+    It exists because if it didn't you would have to save the task to database to
+    see the time, but with this you can see with no influence on other stuff."""
     current_time()
     keep_track = time_now - start_time
     keep_track_round = round(keep_track, 2)
     entry_box_time_passed.delete(0, END)
     entry_box_time_passed.insert(0, (str(keep_track_round), "sec"))
 
+
 def show_file():
+    "Opens in a new window, the file where the tasks are stored."
     with open("tasks saved file.txt") as file:
         test = file.read()
 
@@ -171,7 +183,9 @@ def show_file():
     root_show_file.geometry("350x600")
     root_show_file.configure(bg=r_w_c)
 
+    # Somehow this scroll feature works, don't change anything here:
     textbox = Text(root_show_file, height=30, width=40, bg=r_w_c, fg=f_c, font=14)
+
     textbox.insert(END, test) # why END?
     textbox.grid(row=1, column=3)
 
@@ -182,24 +196,6 @@ def show_file():
     textbox["yscrollcommand"] = scrollbar.set
 
     root_show_file.mainloop()
-
-
-    # labeltest = Label(root, width=40)
-    # # labeltest.insert(0, test)
-    # labeltest.grid(row=1, column=3)
-
-    # text = Text(labeltest)
-    # text.grid(row=1, column=4)
-
-    # spacing_widget = Label(root, width=4, bg=r_w_c)
-    # spacing_widget.grid(row=1, column=4)
-
-    # testscroll = Scrollbar(labeltest, command=labeltest)
-    # text.config(yscrollcommand=testscroll.set)
-    # testscroll.grid(row=1, column=5)
-    # labeltest.config(xscrollcommand=testscroll.set)
-
-
 
 
 # Buttons:
@@ -215,16 +211,16 @@ button_show_time = Button(root, text="Show time", padx=28, pady=20, bg=b_c, fg=f
 
 button_show_file = Button(root, text="Show file", padx=28, pady=20, bg=b_c, fg=f_c, command=lambda: show_file())
 
-# button_dark_mode = Button(root, text="Darkmode", padx=28, pady=20, bg=b_c, fg=f_c, command=lambda: dark_mode_toggle())
+# button_test = Button(root, text="Test", padx=32, pady=20, bg=b_c, fg=f_c, command=lambda: test())
 
 # Putting the buttons on the screen
-button_get_name.grid(row=1, column=0)
-button_stopwatch_start.grid(row=2, column=0)
-button_stopwatch_finish_calculate.grid(row=3, column=0)
-button_clear.grid(row=4, column=0)
-button_show_time.grid(row=5, column=0)
-button_show_file.grid(row=6, column=0)
+button_get_name.place(x=2, y=60)
+button_stopwatch_start.place(x=2, y=130)
+button_stopwatch_finish_calculate.place(x=0, y=200)
+button_clear.place(x=125, y=270)
+button_show_time.place(x=250, y=270)
+button_show_file.place(x=375, y=270)
+# button_test.place(x=500, y=270)
 
-# button_dark_mode.grid(row=5, column=1)
 
 root.mainloop()
