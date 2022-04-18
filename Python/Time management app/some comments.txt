@@ -1,9 +1,0 @@
-Meanings of some of my stuff:
-
-# darkmode:
-# r_w_c = root_window_color
-# e_b_c = entry_box_color
-# e_b_2_c = entry_box_time_passed_color_2
-# b_c = buttons_color
-# f_c = font color
-# f_c_2 = font color 2
