@@ -1,22 +1,34 @@
-user_list0 = input("Insert your list here. Just numbers. Like this: 2,3,4,5,6,2.3...etc: ")
-user_list1 = user_list0.replace(",", " ")
-user_list_formatted = user_list1.split()
+"""
+    -- Sorting list --
+    Sorts inputed list. User can choose between sorting options.
+    
+    Information:
+        asc = ascending order.
+        dsc = descending order.
+        none = prints the list unchanged.
 
-# print(f"{user_list0} \n {user_list1} \n {user_list_formatted}")
+        list should be int numbers separated by commas, and no spaces.
+        This uses Python's sorting modules.
+"""
 
-# This also works:
-# user_list = input("Insert your list here. Just numbers. Separated by spaces. Like this: 2 3 4 5 6 2.3 etc: ")
-# user_list.split()
+input_list = input("Insert your list here. Just int numbers. Like this: 2,3,42...: ")
+input_list = input_list.replace(",", " ")
+input_list = input_list.split()
+
+list_formatted = []
+for i in input_list:
+    i = int(i) # change to float if you want float numbers.
+    list_formatted.append(i)
 
 sorting_choice = input("Choose the operation (asc, dsc, none): ")
 
 if sorting_choice == "asc":
-    user_list_formatted.sort(reverse=False)
-    print(user_list_formatted)
-
-if sorting_choice == "dsc":
-    user_list_formatted.sort(reverse=True) #the reverse is descending by default
-    print(user_list_formatted)
-
-if sorting_choice == "none":
-    print(user_list_formatted)
+    list_formatted.sort(reverse=False)
+    print(list_formatted)
+elif sorting_choice == "dsc":
+    list_formatted.sort(reverse=True)
+    print(list_formatted)
+elif sorting_choice == "none":
+    print(list_formatted)
+else:
+    print("invalid operation")
