@@ -19,7 +19,7 @@ Informações principais:
 - O gerenciador de personagens agora utiliza um banco de dados em JSON
 - O framework utilizado foi o Flask
 - A API consegue ler o banco de dados, e armazenar um novo personagem nele.
-- A API está rodando em http://127.0.0.1:5000
+- A API está rodando em http://127.0.0.1:5000/characters
 - Usei a ferramenta Postman para mandar requests
 
 Informações extras:
