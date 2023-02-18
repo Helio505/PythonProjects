@@ -3,6 +3,18 @@
 Instruções para executar o projeto:
 - Instalar Flask com `pip install flask`
 - Abrir um terminal na pasta "DESAFIO_ETAPA_3", e executar com `python .\main.py` ou `python .\api.py`
+- Mandar requests para http://127.0.0.1:5000/characters. Com o Postman, ou modulo requests do Python, ou outros meios para mandar requests e receber responses.
+- GET pega a lista de todos os personagens.
+- POST cria um personagem. POST precisa incluir o personagem em JSON. Um exemplo de personagem em JSON:
+```json
+{
+    "nome": "Hulk",
+    "descrição": "personagem com superforça",
+    "link": "aaaaaaaaaaa.png",
+    "programa": "paint.net",
+    "animador": "Maria"
+}
+```
 
 <!-- Em funcionamento: -->
 <!-- ![gif](assets/aaaa.gif) -->
