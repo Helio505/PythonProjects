@@ -1,0 +1,248 @@
+---
+openapi: 3.0.0
+info:
+  title: FTT API
+  description: API para a etapa 4 do desafio da FTT
+  termsOfService: "null"
+  contact:
+    name: Helio
+  version: 1.0.0
+servers:
+- url: http://127.0.0.1:5000
+  description: Main server
+tags:
+- name: characters
+paths:
+  /characters:
+    get:
+      tags:
+      - characters
+      summary: Retorna todos os personagens
+      description: Retorna uma lista com todos os personagens.
+      responses:
+        "200":
+          description: Sucesso em retornar lista com todos os personagens salvos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "404":
+          description: Personagens não foram encontrados.
+    post:
+      tags:
+      - characters
+      summary: Cria um personagem
+      description: Cria um novo personagem, ou personagens.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/characters_body'
+        required: true
+      responses:
+        "200":
+          description: Personagem criado com sucesso.
+        "500":
+          description: Um personagem com o id já existe.
+    delete:
+      tags:
+      - characters
+      summary: Deleta todos os personagens
+      description: Deleta todos os personagens.
+      responses:
+        "200":
+          description: Personagens deletados com sucesso.
+  /characters/{id}:
+    get:
+      tags:
+      - characters
+      summary: Retorna um personagem de acordo com o id escolhido
+      description: Pega o personagem em {id}
+      parameters:
+      - name: id
+        in: path
+        description: id do personagem.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        "200":
+          description: Pegou o personagem com sucesso.
+        "404":
+          description: O personagem não foi encontrado.
+    put:
+      tags:
+      - characters
+      summary: Substitui um personagem de acordo com o id escolhido
+      description: Substitui o personagem em {id}
+      parameters:
+      - name: id
+        in: path
+        description: Id do personagem.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/characters_id_body'
+        required: true
+      responses:
+        "200":
+          description: Substituiu o personagem com sucesso.
+        "404":
+          description: O personagem não foi encontrado.
+    delete:
+      tags:
+      - characters
+      summary: Deleta um personagem de acordo com o id escolhido
+      description: Deleta o personagem em {id}
+      parameters:
+      - name: id
+        in: path
+        description: id do personagem.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        "200":
+          description: Deletou o personagem com sucesso.
+        "404":
+          description: O personagem não foi encontrado.
+  /characters/:
+    get:
+      tags:
+      - characters
+      summary: Retorna todos os personagens que possuem o parametro query escolhido
+      description: Retorna todos os personagens que possuem o parametro query escolhido. Os retorna em um array.
+      parameters:
+      - name: id
+        in: query
+        description: id do personagem
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 1
+      - name: nome
+        in: query
+        description: nome do personagem
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: Batman
+      - name: descrição
+        in: query
+        description: descrição do personagem
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: Justiceiro que se veste de morcego.
+      - name: link
+        in: query
+        description: link para a imagem do personagem
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: https://personagens.com/imagens/batman.png
+      - name: programa
+        in: query
+        description: programa utilizado para fazer o personagem
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: paint
+      - name: animador
+        in: query
+        description: animador que fez o personagem
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: Davi Andrade Melo
+      responses:
+        "200":
+          description: Busca feita com sucesso.
+        "404":
+          description: O personagem buscado não foi encontrado.
+components:
+  schemas:
+    inline_response_200:
+      properties:
+        id:
+          minimum: 1
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: Batman
+        descrição:
+          type: string
+          example: Justiceiro que se veste de morcego.
+        link:
+          type: string
+          example: https://personagens.com/imagens/batman.png
+        programa:
+          type: string
+          example: paint
+        animador:
+          type: string
+          example: Davi Andrade Melo
+    characters_body:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Batman
+        descrição:
+          type: string
+          example: Justiceiro que se veste de morcego.
+        link:
+          type: string
+          example: https://personagens.com/imagens/batman.png
+        programa:
+          type: string
+          example: paint
+        animador:
+          type: string
+          example: Davi Andrade Melo
+    characters_id_body:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Batman2
+        descrição:
+          type: string
+          example: Justiceiro que se veste de morcego2.
+        link:
+          type: string
+          example: https://personagens.com/imagens/batman2.png
+        programa:
+          type: string
+          example: paint2
+        animador:
+          type: string
+          example: Davi Andrade Melo2
