@@ -5,7 +5,7 @@ Essa é uma calculadora que facilita a utilização de várias formulas. Seu uso
 
 ## Instruções de uso
 1. Inserir a operação desejada.
-	- SE desejar informações adicionais, adicione "c". Ex: "1c".
+	- SE desejar informações adicionais, adicione "d". Ex: "1d".
 2. Inserir os valores para as variáveis.
 
 ### Instruções de instalação
