@@ -18,9 +18,6 @@ formula: P(x) = n!/x!(n-x)! * p^x * (1-p)^(n-x)
 """
 
 informacoesDidaticasCalculoCombinatoriaArranjo = f"""
-
-
-
 Calcula 
 formula: A(n,r) = n!/(n-r)!
     variáveis:
@@ -33,11 +30,10 @@ informacoesDidaticasCalculoCombinatoriaCombinacao = f"""
 Calcula a combinação
 formula: C(n,r) = n!/r!(n-r)!
     variáveis:
-        n
-        p
+        n = conjunto com 'n' elementos 'distintos'.
+        p = subconjunto.
 Caracteristicas:
     - A ordem não importa.
-
 Exemplos:
 """
 
