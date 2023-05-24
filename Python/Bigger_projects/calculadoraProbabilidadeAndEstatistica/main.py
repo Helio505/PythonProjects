@@ -10,7 +10,7 @@ f"""
 1 - calculoProbabilidadeBinomial
 2 - calculoProbabilidadeBinomialMultiplo
 3 - calculoCombinacao
-4 - calculoPermutacao
+4 - calculoPermutacao (retorna o fatorial)
 5 - calculoArranjo
 6 - probabilidadeCondicional
 d - informaçõesDidaticas (escrever junto da escolha do calculo)
@@ -46,13 +46,13 @@ def calculoProbabilidadeBinomial():
     calcPt3 = (1-p)**(n-x) # (1-p)^(n-x)
     resultado = calcPt1 * calcPt2 * calcPt3 # P(x) = n!/x!(n-x)! * p^x * (1-p)^(n-x)
 
-    print(modoDidatico)
+    # print(modoDidatico)
     # Retorno do resultado:
     return print(f"\nResultado:\nP(x = {x}) = {resultado}\nP(x = {x}) = {resultado*100} %")
 
 def calculoProbabilidadeBinomialMultiplo():
     """
-    Calcula a probabilidade condicional, levando em conta vários valores para x.
+    Calcula a probabilidade binomial, levando em conta vários valores para x.
     """
     print("\n-- calculoProbabilidadeBinomialMultiplo --")
     global modoDidatico
@@ -98,38 +98,60 @@ def calculoProbabilidadeBinomialMultiplo():
 
     soma = sum(vetorComResultados)
     print(f"Soma = {soma}")
-    print(f"Acumulada = {format(soma, 'f')}")
+    print(f"SomaArredondada = {format(soma, 'f')}")
     return
 
 def calculoCombinacao():
     """
-    Calcula combinação.
+    Calcula combinação simples.
     """
     print("\n-- calculoCombinação --")
     global modoDidatico
     if modoDidatico == True:
         print(informacoesDidaticasCalculoCombinatoriaCombinacao)
-    return
+
+    # Função de suporte:
+    def f(number):
+        """ Calcula o fatorial do parametro recebido. """
+        return math.factorial(number)
+
+    n = int(input("Insira n: "))
+    r = int(input("Insira r: "))
+
+    resultado = f(n)/(f(r)*f(n-r))
+    return print(f"\nResultado:\nC({n},{r}) = {resultado}")
 
 def calculoPermutacao():
     """
     Calcula permutação.
     """
-    print("\n-- calculo --")
+    print("\n-- calculoPermutação --")
     global modoDidatico
     if modoDidatico == True:
         print(informacoesDidaticasCalculoCombinatoriaPermutacao)
-    return
+    n = int(input("Insira n: "))
+    resultado = math.factorial(n)
+    return print(f"\nResultado:\nP {n} = {resultado}")
 
 def calculoArranjo():
     """
     Calcula arranjo.
     """
-    print("\n-- calculo --")
+    print("\n-- calculoArranjo --")
     global modoDidatico
     if modoDidatico == True:
         print(informacoesDidaticasCalculoCombinatoriaArranjo)
-    return
+    
+    # Função de suporte:
+    def f(number):
+        """ Calcula o fatorial do parametro recebido. """
+        return math.factorial(number)
+
+    n = int(input("Insira n: "))
+    r = int(input("Insira r: "))
+
+    resultado = f(n)/(f(n-r))
+    return print(f"\nResultado:\nA({n},{r}) = {resultado}")
 
 def calculoProbabilidadeCondicional():
     """

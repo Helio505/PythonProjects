@@ -15,5 +15,3 @@ Essa é uma calculadora que facilita a utilização de várias formulas. Seu uso
 ## Formulas Implementadas no momento:
 - Distribuição binomial;
 - Distribuição binomial (com x em um intervalo);
-
-
